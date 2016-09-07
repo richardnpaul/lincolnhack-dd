@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from userprofile import views
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #url(r'^admin/', admin.site.urls),
+    url(r'^$', views.login_page, name='login'),
 ]
