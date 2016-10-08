@@ -8,6 +8,28 @@
     <body>
         <div id="header">
             <span class="logo">Digital Democracy</span>
+            {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == "profile" %}class="selected"{% endif %}>
+                    <a href="{% url 'profile' %}">My Profile</a>
+                </li>
+                <li {% if section == "bills" %}class="selected"{% endif %}>
+                    <a href="#">Bills</a>
+                </li>
+                <li {% if section == "mp" %}class="selected"{% endif %}>
+                    <a href="#">MP</a>
+                </li>
+            </ul>
+            {% endif %}
+
+            <span class="user">
+            {% if request.user.is_authenticated %}
+                Hello {{ request.user.first_name }},
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            </span>
         </div>
         <div id="content">
             {% block content %}
