@@ -54,7 +54,9 @@ ROOT_URLCONF = 'dd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + '/dd/templates',
+                 BASE_DIR + '/authentication/templates',
+                 BASE_DIR + '/voting/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
