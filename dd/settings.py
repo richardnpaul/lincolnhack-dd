@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'mps',
+    'userprofile',
+    'voting',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -54,10 +59,10 @@ ROOT_URLCONF = 'dd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/dd/templates',
-                 BASE_DIR + '/authentication/templates',
-                 BASE_DIR + '/voting/templates',
-                 BASE_DIR + '/website/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'dd/templates'),
+                 os.path.join(BASE_DIR, 'authentication/templates'),
+                 os.path.join(BASE_DIR, 'voting/templates'),
+                 os.path.join(BASE_DIR, 'website/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,3 +135,7 @@ from django.core.urlresolvers import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
+
+# Media location and path
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
