@@ -1,0 +1,12 @@
+# Pycharm settings directory
+.idea/
+
+# Don't commit the sqlite database
+db.sqlite3
+
+# Don't commit any files with tilde in the extentions
+*.*~
+
+# Don't commit the python compiled binary files or the __pycache__ directories
+*.pyc
+__pycache__
