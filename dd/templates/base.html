@@ -14,10 +14,10 @@
                     <a href="{% url 'profile' %}">My Profile</a>
                 </li>
                 <li {% if section == "bills" %}class="selected"{% endif %}>
-                    <a href="#">Bills</a>
+                    <a href="{% url 'bills' %}">Bills</a>
                 </li>
                 <li {% if section == "mp" %}class="selected"{% endif %}>
-                    <a href="#">MP</a>
+                    <a href="{% url 'mp' mp.id %}">MP</a>
                 </li>
             </ul>
             {% endif %}

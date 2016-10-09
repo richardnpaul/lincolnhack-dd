@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'userprofile',
     'voting',
     'authentication',
+    'website',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 # For the authentication module we lazily build our urls before the apps urls
