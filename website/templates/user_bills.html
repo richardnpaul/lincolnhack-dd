@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ mp.first_name }} {{ mp.last_name }}{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <table>
+            <tr>
+                <th>Name of Bill</th>
+                <th>Description</th>
+                <th>Vote</th>
+            </tr>
+            {% for bill in voted %}
+            <tr>
+                <td>{{ bill.name }}</td>
+                <td>{{ bill.description }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sidebar">
+            <p>Welcome to your bills page.</p>
+            <img src="{% if user_profile.photo %}{{ user_profile.photo.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}" alt="This is {{ user.first_name }} {{ user.last_name }}'s photo" />
+        <br />
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static staticfiles %}
+
+{% block title %}{{ user.user.first_name }} {{ user.user.last_name }}{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <p>Welcome to your profile, {{ user.user.first_name }}.</p>
+        <img src="{% if user.photo %}{{ user.photo.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}" alt="This is {{ user.first_name }} {{ user.last_name }}'s photo" />
+        <p>{{ user.user.intro }}</p>
+    </div>
+    <div id="sidebar">
+            <p><a href="{% url 'mp' mp.id %}">{{ mp.first_name }} {{ mp.last_name }}</a></p>
+            <img src="{% if mp.photo %}{{ mp.photo.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}" alt="This is {{ mp.first_name }} {{ mp.last_name }}'s photo" />
+        <br />
+    </div>
+{% endblock %}
