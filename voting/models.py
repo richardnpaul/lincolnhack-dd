@@ -28,8 +28,7 @@ class Bill(models.Model):
 
 class Votes(models.Model):
     vote = models.NullBooleanField()
-    bill = models.ForeignKey(Bill, related_name='bill',
-                             on_delete=models.CASCADE,)
+    bill = models.ForeignKey(Bill, on_delete=models.CASCADE,)
     voter = models.ForeignKey(User, on_delete=models.CASCADE,)
 
     def __str__(self):

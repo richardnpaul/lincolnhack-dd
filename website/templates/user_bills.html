@@ -11,11 +11,11 @@
                 <th>Description</th>
                 <th>Vote</th>
             </tr>
-            {% for bill in voted %}
+            {% for bill in bills %}
             <tr>
                 <td>{{ bill.name }}</td>
                 <td>{{ bill.description }}</td>
-                <td></td>
+                <td>{{ bill.vote }}</td>
             </tr>
             {% endfor %}
         </table>

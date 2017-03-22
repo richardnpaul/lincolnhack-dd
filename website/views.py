@@ -25,19 +25,15 @@ def mp_profile(request, mp_id):
 def bills(request):
     user_profile = UserProfile.objects.get(user=request.user.id)
     user_mp = MP.objects.get(id=user_profile.mp.id)
-    voted = []
     bills = Bill.objects.all()
+    bills.filter(votes__voter__id=request.user.id).all()#.filter(votes__bill_id=None)
     for bill in bills:
-        if Votes.objects.all().filter(bill=bill).filter(voter=request.user):
-            voted.append(bill)
+        vote = Votes.objects.filter(bill=bill.id).filter(voter=request.user.id)
+        for v in vote:
+            if not None:
+                bill.votes_set.add(v)
+        print(bill.votes_set)
     return render(request, 'user_bills.html', {'user': request.user,
                                                'mp': user_mp,
-                                               'user_profile': user_profile,
-                                               'voted': voted,
-                                               })
+                                               'bills': bills})
 
-
-@login_required
-def vote(request):
-
-    return render(request, 'user_vote.html', {})
