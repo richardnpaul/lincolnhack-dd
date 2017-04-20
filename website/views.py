@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
 from mps.models import MP
 from userprofile.models import UserProfile
-from voting.models import Bill, Votes
+from voting.models import Bill
 
 
 @login_required
@@ -25,15 +26,10 @@ def mp_profile(request, mp_id):
 def bills(request):
     user_profile = UserProfile.objects.get(user=request.user.id)
     user_mp = MP.objects.get(id=user_profile.mp.id)
-    bills = Bill.objects.all()
-    bills.filter(votes__voter__id=request.user.id).all()#.filter(votes__bill_id=None)
-    for bill in bills:
-        vote = Votes.objects.filter(bill=bill.id).filter(voter=request.user.id)
-        for v in vote:
-            if not None:
-                bill.votes_set.add(v)
-        print(bill.votes_set)
+    bills = Bill.objects.prefetch_related('votes','votes__voter').all()
+    user_voted = bills.filter(votes__voter__id=request.user.id).all()
+    user_not_voted = bills.exclude(votes__voter__id=request.user.id).all()
     return render(request, 'user_bills.html', {'user': request.user,
                                                'mp': user_mp,
-                                               'bills': bills})
-
+                                               'voted_bills': user_voted,
+                                               'unvoted_bills': user_not_voted})

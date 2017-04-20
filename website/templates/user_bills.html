@@ -9,19 +9,47 @@
             <tr>
                 <th>Name of Bill</th>
                 <th>Description</th>
-                <th>Vote</th>
+                <th>User Vote</th>
+                <th>Bill Result</th>
             </tr>
-            {% for bill in bills %}
+            {% for bill in voted_bills %}
             <tr>
                 <td>{{ bill.name }}</td>
                 <td>{{ bill.description }}</td>
-                <td>{{ bill.vote }}</td>
+                <td>Voted</td>
+                <td>{% if bill.status %}
+                        {% if bill.result %}
+                        The bill has passed!
+                        {% elif not bill.result %}
+                        The bill was voted down!
+                        {% endif %}
+                    {% else %}
+                    This bill is still open for voting!
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            {% for bill in unvoted_bills %}
+            <tr>
+                <td>{{ bill.name }}</td>
+                <td>{{ bill.description }}</td>
+                <td>LINK</td>
+                <td>{% if bill.status %}
+                        {% if bill.result %}
+                        The bill has passed!
+                        {% elif not bill.result %}
+                        The bill was voted down!
+                        {% endif %}
+                    {% else %}
+                    This bill is still open for voting!
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>
     </div>
     <div id="sidebar">
-            <p>Welcome to your bills page.</p>
+            <p>Welcome to your bills page {{ user }}</p>
             <img src="{% if user_profile.photo %}{{ user_profile.photo.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}" alt="This is {{ user.first_name }} {{ user.last_name }}'s photo" />
         <br />
     </div>
