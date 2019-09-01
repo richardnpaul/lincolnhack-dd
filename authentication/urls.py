@@ -1,13 +1,13 @@
-from django.conf.urls import url
-from django.contrib.auth import views
+from django.urls import path
+from django.contrib.auth.views import LogoutView, LoginView, logout_then_login
 
 
 urlpatterns = [
-    url(r'^login/$', views.login,
-        {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', views.logout,
-        {'template_name': 'logged_out.html'}, name='logout'),
-    url(r'^logout-then-login/$', views.logout_then_login,
+    path('login/', LoginView.as_view(template_name='login.html'),
+         name='login'),
+    path('logout/', LogoutView.as_view(template_name='logged_out.html'),
+         name='logout'),
+    path('logout-then-login/', logout_then_login,
         name='logout_then_login'),
     #url(r'^password-change/$', views.password_change,
     #    {'template_name': 'password_change_form.html'},

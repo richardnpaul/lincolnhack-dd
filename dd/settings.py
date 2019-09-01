@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'dd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dd',
         'USER': 'dd',
         'PASSWORD': 'password',
@@ -140,7 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # For the authentication module we lazily build our urls before the apps urls
 # have been loaded
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 LOGIN_URL = reverse_lazy('login')
