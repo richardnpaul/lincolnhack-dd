@@ -1,0 +1,12 @@
+---
+allowCompoundWords: true
+languageSettings:
+  - caseSensitive: false
+    enabled: true
+    languageId: en-GB
+dictionaryDefinitions:
+  - name: my_words
+    path: ./.my_words.txt
+    addWords: true
+dictionaries:
+  - my_words

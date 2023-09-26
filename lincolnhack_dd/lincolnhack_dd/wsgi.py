@@ -7,9 +7,12 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 """
 
+# Standard Library Imports
 import os
 
+# Django Imports
 from django.core.wsgi import get_wsgi_application
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lincolnhack_dd.settings")
 
